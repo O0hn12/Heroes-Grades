@@ -101,24 +101,20 @@
     }
 
     document.getElementById("studentName").addEventListener("input", function() {
-      let input = this.value.toLowerCase();
-      let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev/";
-      let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&names=true";
+  let input = this.value.toLowerCase();
+  let requestUrl = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`;
 
-      fetch(requestUrl)
-  .then(response => {
-    if (!response.ok) {
-      throw new Error("⚠️ فشل في جلب الأسماء!");
-    }
-    return response.json();
-  })
-  .then(names => {
-    showSuggestions(names);
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    document.getElementById("suggestions").innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
-  });
+  fetch(requestUrl)
+    .then(response => response.json())
+    .then(names => {
+      let filteredNames = names.filter(name => name.toLowerCase().startsWith(input));
+      showSuggestions(filteredNames);
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      document.getElementById("suggestions").innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
+    });
+});
 
     function showSuggestions(names) {
   let list = document.getElementById("suggestions");

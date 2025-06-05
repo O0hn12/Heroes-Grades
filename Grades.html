@@ -76,6 +76,20 @@ input[type="text"]:focus, #gradeResult:focus {
       background-color: #ffd700;
     }
 
+    #highlight-box {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  width: 90%;
+  margin: 10px auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
     @media (max-width: 768px) {
   body {
     background-size: contain;
@@ -94,10 +108,12 @@ input[type="text"]:focus, #gradeResult:focus {
   }
 
   button.adventure-button {
-    width: 90%;
-    font-size: 20px;
-    padding: 12px;
-  }
+  width: 100%;
+  font-size: 22px;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: bold;
+}
 
   #suggestions div {
     font-size: 18px;
@@ -114,7 +130,7 @@ input[type="text"]:focus, #gradeResult:focus {
   <!-- الصفحة الأولى: اختيار الفرقة -->
   <div id="selectionPage">
     <h1 id="title-box">🦸‍♂️ مغامرة الأبطال! 🌟</h1>
-    <h2>اختر شخصيتك وانطلق!</h2>
+    <div id="highlight-box">اختر شخصيتك وانطلق!</div>
 
     <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
     <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>

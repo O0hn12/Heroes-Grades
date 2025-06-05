@@ -45,9 +45,13 @@ button.adventure-button:hover {
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  align-items: center; /* ضبط العناصر في المنتصف أفقيًا */
+  justify-content: center; /* ضبط العناصر في المنتصف رأسيًا */
+  height: 100vh; /* يجعل الصفحة تمتد بطول الشاشة بالكامل */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
     input[type="text"], #gradeResult {

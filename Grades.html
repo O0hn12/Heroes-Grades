@@ -208,18 +208,22 @@
     selectionPage.style.position = "fixed";
     selectionPage.style.top = "50%";
     selectionPage.style.transform = "translate(-50%, -50%)";
-    
-    // 🔥 إعادة تحميل الأبعاد مرتين لمنع أي خطأ 🔥
+
+    // 🔥 إعادة ضبط الصفحة مرتين لضمان تحميلها بشكل صحيح
     setTimeout(() => {
       selectionPage.getBoundingClientRect();
       window.requestAnimationFrame(() => selectionPage.getBoundingClientRect());
-    }, 300);
+    }, 100);
 
-    // ✅ إجبار الصفحة على تحديث `CSS` بعد التحميل
     setTimeout(() => {
       document.body.style.display = "block";
       document.body.getBoundingClientRect();
-    }, 500);
+    }, 200);
+
+    // ✅ إجبار المتصفح على تحديث العناصر مرة إضافية بعد تحميل الصفحة
+    setTimeout(() => {
+      selectionPage.style.transform = "translate(-50%, -50%)";
+    }, 300);
   }
 });
 </script>

@@ -64,14 +64,13 @@
   width: 90%;
   max-width: 400px;
 }
-    #selectionPage, #gradesPage {
+    #selectionPage {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh; /* ضمان التوسيط العمودي دائمًا */
-  width: 100vw; /* يضمن بقاء العناصر داخل الشاشة */
-  text-align: center;
+  min-height: 100vh;
+  width: 100vw;
   position: fixed;
   left: 50%;
   top: 50%;
@@ -133,6 +132,7 @@
   width: 80%;
   margin: auto;
   justify-items: center;
+  position: relative; /* يمنع نزول الأزرار خارج التوزيع */
 }
 
     @media (max-width: 768px) {

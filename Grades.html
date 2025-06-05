@@ -73,6 +73,11 @@
   overflow-x: hidden;
   width: 100%;
   height: 100%;
+  min-height: 100vh; /* يضمن عدم تأثر التوزيع */
+  display: flex; /* يجعل الصفحة تتوزع بشكل صحيح عند التحميل */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
     input[type="text"], #gradeResult, .adventure-button {
   width: 90%;
@@ -192,9 +197,28 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
+  let selectionPage = document.getElementById("selectionPage");
   setTimeout(() => playBackgroundMusic(), 500); // تشغيل الموسيقى بعد نصف ثانية من تحميل الصفحة
+  if (selectionPage) {
+    selectionPage.style.display = "flex";
+    selectionPage.style.opacity = "1";
+    selectionPage.style.position = "fixed";
+    selectionPage.style.top = "50%";
+    selectionPage.style.transform = "translate(-50%, -50%)";
+    
+    // 🔥 إعادة تحميل الأبعاد مرتين لمنع أي خطأ 🔥
+    setTimeout(() => {
+      selectionPage.getBoundingClientRect();
+      window.requestAnimationFrame(() => selectionPage.getBoundingClientRect());
+    }, 300);
+
+    // ✅ إجبار الصفحة على تحديث `CSS` بعد التحميل
+    setTimeout(() => {
+      document.body.style.display = "block";
+      document.body.getBoundingClientRect();
+    }, 500);
+  }
 });
-document.addEventListener("click", () => playBackgroundMusic(), { once: true });
 </script>
 
 <!-- الصفحة الأولى: اختيار الفرقة -->

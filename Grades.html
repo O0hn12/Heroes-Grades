@@ -132,6 +132,7 @@
   width: 80%;
   margin: auto;
   justify-items: center;
+  pointer-events: auto; /* يضمن أن الأزرار قابلة للضغط */
 }
 
     @media (max-width: 768px) {
@@ -225,16 +226,17 @@
   let selectedClass = "";
 
   function nextStep(className) {
-    selectedClass = className;
-    document.getElementById("selectionPage").style.opacity = "0";
+  console.log("✅ تم الضغط على زر:", className); // تحقق من استجابة الضغط
+  selectedClass = className;
+  document.getElementById("selectionPage").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("selectionPage").style.display = "none";
+    document.getElementById("gradesPage").style.display = "block";
     setTimeout(() => {
-      document.getElementById("selectionPage").style.display = "none";
-      document.getElementById("gradesPage").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("gradesPage").style.opacity = "1";
-      }, 100);
-    }, 1000);
-  }
+      document.getElementById("gradesPage").style.opacity = "1";
+    }, 100);
+  }, 1000);
+}
 
   function playBackgroundMusic() {
     let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");

@@ -90,11 +90,11 @@
   justify-content: center;
   min-height: 100vh;
   width: 100vw;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%);
-  opacity: 1; /* يبدأ مخفي لضمان عدم حدوث أخطاء في التوزيع */
+  opacity: 0; /* يبدأ مخفي لضمان عدم حدوث أخطاء في التوزيع */
   will-change: transform; /* يجعل المتصفح يجهّز العنصر قبل ظهوره */
 }
 
@@ -339,8 +339,9 @@
     
     // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد 🔥
     window.requestAnimationFrame(() => {
-      selectionPage.getBoundingClientRect();
-    });
+  selectionPage.getBoundingClientRect();
+  setTimeout(() => selectionPage.getBoundingClientRect(), 200);
+});
   }
 });
 

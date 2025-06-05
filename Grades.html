@@ -253,7 +253,14 @@
 </div>
 
 <script>
-
+  document.addEventListener("DOMContentLoaded", function() {
+  let startButton = document.getElementById("startButton");
+  if (startButton) {
+    startButton.addEventListener("click", startGame);
+  } else {
+    console.error("❌ زر يلا بينا غير موجود!");
+  }
+});
   function startGame() {
   console.log("تم الضغط على الزر"); // تأكيد تنفيذ الوظيفة
   let introPage = document.getElementById("introPage");
@@ -272,14 +279,6 @@
       selectionPage.style.opacity = "1"; // يجعل الصفحة تظهر بشكل تدريجي
     }, 100);
   }, 500);
-    document.addEventListener("DOMContentLoaded", function() {
-  let startButton = document.getElementById("startButton");
-  if (startButton) {
-    startButton.addEventListener("click", startGame);
-  } else {
-    console.error("❌ زر يلا بينا غير موجود!");
-  }
-});
 }
 
   let selectedClass = "";

@@ -106,27 +106,39 @@
       let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&names=true";
 
       fetch(requestUrl)
-        .then(response => response.json())
-        .then(names => {
-          let suggestions = names.filter(name => name.toLowerCase().startsWith(input));
-          showSuggestions(suggestions);
-        })
-        .catch(error => console.error("Error:", error));
-    });
+  .then(response => {
+    if (!response.ok) {
+      throw new Error("⚠️ فشل في جلب الأسماء!");
+    }
+    return response.json();
+  })
+  .then(names => {
+    showSuggestions(names);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+    document.getElementById("suggestions").innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
+  });
 
     function showSuggestions(names) {
-      let list = document.getElementById("suggestions");
-      list.innerHTML = "";
-      names.forEach(name => {
-        let item = document.createElement("div");
-        item.textContent = name;
-        item.onclick = function() {
-          document.getElementById("studentName").value = name;
-          list.innerHTML = "";
-        };
-        list.appendChild(item);
-      });
-    }
+  let list = document.getElementById("suggestions");
+  list.innerHTML = "";
+
+  if (names.length === 0) {
+    list.innerHTML = "<p>⚠️ لا توجد نتائج</p>";
+    return;
+  }
+
+  names.forEach(name => {
+    let item = document.createElement("div");
+    item.textContent = name;
+    item.onclick = function() {
+      document.getElementById("studentName").value = name;
+      list.innerHTML = ""; // إخفاء الاقتراحات بعد الاختيار
+    };
+    list.appendChild(item);
+  });
+}
 
     function fetchGrade() {
       let studentName = document.getElementById("studentName").value;

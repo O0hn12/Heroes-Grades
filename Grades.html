@@ -39,6 +39,19 @@
       transition: opacity 1s ease-in-out;
     }
 
+    input[type="text"], #gradeResult {
+  width: 80%;
+  padding: 15px;
+  font-size: 24px;
+  text-align: center;
+  border-radius: 10px;
+  font-family: 'Tajawal', sans-serif;
+  border: 2px solid #ff9800;
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #000;
+}
+
+
     #suggestions div {
       cursor: pointer;
       padding: 5px;
@@ -72,11 +85,14 @@
 
   <!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
   <div id="gradesPage">
-    <h1 id="title-box">🔍 ابحث عن درجتك! 🌟</h1>
-    <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
-    <div id="suggestions"></div>
-    <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
-    <input type="text" id="gradeResult" placeholder="✨ درجتك ستظهر هنا!" readonly>
+    <h1 id="title-box">🔍 ابحث عن درجتك 🌟</h1>
+<div id="input-box">
+  <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
+</div>
+<button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
+<div id="result-box">
+  <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا!" readonly>
+</div>
   </div>
 
   <script>

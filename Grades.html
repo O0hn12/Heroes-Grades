@@ -107,7 +107,9 @@
   fetch(requestUrl)
     .then(response => response.json())
     .then(names => {
-      let filteredNames = names.filter(name => name.toLowerCase().startsWith(input));
+      let filteredNames = names.filter(name => 
+  name && typeof name === "string" && name.toLowerCase().includes(input)
+);
       showSuggestions(filteredNames);
     })
     .catch(error => {

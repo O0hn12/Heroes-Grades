@@ -336,7 +336,9 @@
     selectionPage.style.position = "absolute";
     selectionPage.style.top = "50%";
     selectionPage.style.transform = "translate(-50%, -50%)";
-    
+    selectionPage.style.willChange = "transform, opacity"; // يجهز المتصفح للحسابات قبل تنفيذها
+    selectionPage.getBoundingClientRect(); // يجبر المتصفح على حساب الأبعاد فورًا
+
     // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد 🔥
    window.requestAnimationFrame(() => {
   selectionPage.getBoundingClientRect();

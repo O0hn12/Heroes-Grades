@@ -8,7 +8,7 @@
     body {
       font-family: 'Baloo Bhaijaan 2', cursive;
       text-align: center;
-      background: url('https://www.example.com/adventure-bg.jpg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/FbfJxWvn/logo.png') no-repeat center center fixed;
       background-size: cover;
       color: white;
     }
@@ -55,7 +55,7 @@
     body {
       font-family: 'Baloo Bhaijaan 2', cursive;
       text-align: center;
-      background: url('https://www.example.com/adventure-bg.jpg') no-repeat center center fixed;
+      background: url('https://i.ibb.co/FbfJxWvn/logo.png') no-repeat center center fixed;
       background-size: cover;
       color: white;
     }
@@ -98,7 +98,7 @@
 
     document.getElementById("studentName").addEventListener("input", function() {
       let input = this.value.toLowerCase();
-      let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
+      let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev/";
       let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&names=true";
 
       fetch(requestUrl)
@@ -139,7 +139,7 @@
     }
 
     function playSuccessSound() {
-      let audio = new Audio("https://raw.githubusercontent.com/YOUR_USERNAME/adventure-sound/main/water-adventure-22474.mp3");
+      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
       audio.play();
     }
   </script>

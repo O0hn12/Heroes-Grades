@@ -326,31 +326,5 @@
   }, 500);
 }
 </script>
-
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
-  let selectionPage = document.getElementById("selectionPage");
-  if (selectionPage) {
-    selectionPage.style.display = "flex";
-    selectionPage.style.opacity = "1";
-    selectionPage.style.position = "absolute";
-    selectionPage.style.top = "50%";
-    selectionPage.style.transform = "translate(-50%, -50%)";
-    selectionPage.style.willChange = "transform, opacity"; // يجهز المتصفح للحسابات قبل تنفيذها
-    selectionPage.getBoundingClientRect(); // يجبر المتصفح على حساب الأبعاد فورًا
-
-    // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد 🔥
-   window.requestAnimationFrame(() => {
-  selectionPage.getBoundingClientRect();
-  setTimeout(() => {
-    selectionPage.style.transform = "translate(-50%, -50%)"; // إعادة ضبط الموقع بالكامل
-    selectionPage.style.opacity = "1"; // يضمن ظهور الصفحة بالكامل
-    selectionPage.getBoundingClientRect();
-  }, 200);
-});
-  }
-});
-
-</script>
 </body>
 </html>

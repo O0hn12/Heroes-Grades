@@ -332,12 +332,14 @@ document.addEventListener("click", () => playBackgroundMusic(), { once: true });
     selectionPage.style.top = "50%";
     selectionPage.style.transform = "translate(-50%, -50%)";
     
-    // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد 🔥
+    // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد مرتين 🔥
     window.requestAnimationFrame(() => {
-      selectionPage.getBoundingClientRect(); 
+      selectionPage.getBoundingClientRect();
+      window.requestAnimationFrame(() => selectionPage.getBoundingClientRect()); 
     });
   }
 });
+
 </script>
 </body>
 </html>

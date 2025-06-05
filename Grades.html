@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>اختيار الفرقة</title>
+</head>
+<body>
+  <h2>اختر الفرقة</h2>
+  <select id="classSelect">
+    <option value="1ب">1ب</option>
+    <option value="2ب">2ب</option>
+    <option value="3ب">3ب</option>
+    <option value="4ب">4ب</option>
+    <option value="5ب">5ب</option>
+    <option value="6ب">6ب</option>
+  </select>
+  <button onclick="goToNamePage()">التالي</button>
+
+  <script>
+    function goToNamePage() {
+      var selectedClass = document.getElementById("classSelect").value;
+      window.location.href = "search.html?class=" + selectedClass;
+    }
+  </script>
+</body>
+</html>

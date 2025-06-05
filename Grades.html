@@ -200,16 +200,6 @@
   document.addEventListener("click", function() {
   playBackgroundMusic();
 }, { once: true }); // يضمن تشغيل الموسيقى عند أول ضغط بدون تكرار
-  document.addEventListener("DOMContentLoaded", function() {
-  let selectionPage = document.getElementById("selectionPage");
-  if (selectionPage) {
-    selectionPage.style.display = "flex";
-    selectionPage.style.opacity = "1";
-    selectionPage.style.position = "absolute"; /* يضمن ثبات العنصر */
-    selectionPage.style.top = "50%";
-    selectionPage.style.transform = "translate(-50%, -50%)";
-  }
-});
 </script>
 
 <!-- الصفحة الأولى: اختيار الفرقة -->

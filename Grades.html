@@ -322,5 +322,16 @@ document.addEventListener("click", () => playBackgroundMusic(), { once: true });
 }
 </script>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    let selectionPage = document.getElementById("selectionPage");
+    if (selectionPage) {
+      selectionPage.style.display = "flex"; /* يضمن أن الصفحة تظهر بدون مشاكل */
+      selectionPage.style.opacity = "1";
+      selectionPage.style.position = "absolute";
+      selectionPage.style.transform = "translate(-50%, -50%)";
+    }
+  });
+</script>
 </body>
 </html>

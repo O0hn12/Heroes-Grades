@@ -233,7 +233,7 @@
   .then(response => response.text())
   .then(data => {
     console.log("🔍 البيانات المسترجعة:", data); // تحقق مما يتم استرجاعه
-    if (data.trim() === "" || data === "0") {
+    if (data.trim() === "" || isNaN(data)) {
       document.getElementById("gradeResult").value = "❌ لا توجد بيانات لهذا الاسم!";
     } else {
       document.getElementById("gradeResult").value = "🌟 درجتك: " + data;

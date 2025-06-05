@@ -269,9 +269,12 @@
     introPage.style.display = "none";
     selectionPage.style.display = "flex";
     setTimeout(() => {
-      selectionPage.style.opacity = "1";
-    }, 50);
-  }, 500);
+  introPage.style.display = "none";
+  selectionPage.style.display = "flex";
+  setTimeout(() => {
+    selectionPage.style.opacity = "1"; // يضمن ظهور الصفحة فورًا
+  }, 100);
+}, 500);
 }
 
   let selectedClass = "";

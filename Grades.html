@@ -90,7 +90,7 @@
   justify-content: center;
   min-height: 100vh;
   width: 100vw;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%);
@@ -203,30 +203,11 @@
   document.addEventListener("DOMContentLoaded", function() {
   let selectionPage = document.getElementById("selectionPage");
   if (selectionPage) {
-    console.log("✅ الصفحة بدأت التحميل");
     selectionPage.style.display = "flex";
     selectionPage.style.opacity = "1";
-    selectionPage.style.position = "fixed";
+    selectionPage.style.position = "absolute"; /* يضمن ثبات العنصر */
     selectionPage.style.top = "50%";
     selectionPage.style.transform = "translate(-50%, -50%)";
-    
-    console.log("📏 قبل إعادة الحساب:", selectionPage.getBoundingClientRect());
-    // 🔥 إعادة ضبط الصفحة مرتين لضمان تحميلها بشكل صحيح
-    setTimeout(() => {
-      selectionPage.getBoundingClientRect();
-      window.requestAnimationFrame(() => selectionPage.getBoundingClientRect());
-      console.log("📏 بعد إعادة الحساب:", selectionPage.getBoundingClientRect());
-    }, 100);
-
-    setTimeout(() => {
-      document.body.style.display = "block";
-      document.body.getBoundingClientRect();
-    }, 200);
-
-    // ✅ إجبار المتصفح على تحديث العناصر مرة إضافية بعد تحميل الصفحة
-    setTimeout(() => {
-      selectionPage.style.transform = "translate(-50%, -50%)";
-    }, 300);
   }
 });
 </script>

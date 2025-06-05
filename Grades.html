@@ -38,27 +38,29 @@ button.adventure-button:hover {
   box-shadow: 0px 4px 15px rgba(255, 87, 34, 0.5);
 }
 
-    #gradesPage {
+   #gradesPage {
   display: none;
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  padding: 20px;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
   display: flex;
-  flex-direction: column;
-  align-items: center; /* ضبط العناصر في المنتصف أفقيًا */
-  justify-content: center; /* ضبط العناصر في المنتصف رأسيًا */
-  height: 100vh; /* يجعل الصفحة تمتد بطول الشاشة بالكامل */
-  height: 100vh;
+  align-items: center;
+  justify-content: center;
   position: fixed;
-  height: 100vh;
-  width: 100%; /* يجعل العناصر تأخذ عرض الشاشة بالكامل */
+  top: 0;
+  left: 0;
+  padding: 20px;
+}
+
+#gradesPage .container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 20px;
-
+  max-width: 600px;
 }
 
     input[type="text"], #gradeResult {
@@ -159,16 +161,23 @@ input[type="text"]:focus, #gradeResult:focus {
 
   <!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
   <div id="gradesPage">
+  <div class="container">
     <h1 id="title-box">🔍 ابحث عن درجتك 🌟</h1>
-<div id="input-box">
-  <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
-</div>
+
+    <div id="input-box">
+      <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
+    </div>
+
     <div id="suggestions"></div>
-<button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
-<div id="result-box">
-  <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا!" readonly>
-</div>
+
+    <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
+
+    <div id="result-box">
+      <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا!" readonly>
+    </div>
   </div>
+</div>
+
 
   <script>
     let selectedClass = "";

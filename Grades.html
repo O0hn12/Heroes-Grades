@@ -264,17 +264,14 @@
     return;
   }
 
-  introPage.style.opacity = "0";
+  introPage.style.opacity = "0"; // إخفاء الصفحة الأولى تدريجيًا
   setTimeout(() => {
-    introPage.style.display = "none";
-    selectionPage.style.display = "flex";
+    introPage.style.display = "none"; // إخفاء الصفحة الأولى نهائيًا
+    selectionPage.style.display = "flex"; // إظهار صفحة اختيار الفرقة
     setTimeout(() => {
-  introPage.style.display = "none";
-  selectionPage.style.display = "flex";
-  setTimeout(() => {
-    selectionPage.style.opacity = "1"; // يضمن ظهور الصفحة فورًا
-  }, 100);
-}, 500);
+      selectionPage.style.opacity = "1"; // تأثير ظهور تدريجي
+    }, 100);
+  }, 500);
 }
 
   let selectedClass = "";

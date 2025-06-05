@@ -338,9 +338,13 @@
     selectionPage.style.transform = "translate(-50%, -50%)";
     
     // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد 🔥
-    window.requestAnimationFrame(() => {
+   window.requestAnimationFrame(() => {
   selectionPage.getBoundingClientRect();
-  setTimeout(() => selectionPage.getBoundingClientRect(), 200);
+  setTimeout(() => {
+    selectionPage.style.transform = "translate(-50%, -50%)"; // إعادة ضبط الموقع بالكامل
+    selectionPage.style.opacity = "1"; // يضمن ظهور الصفحة بالكامل
+    selectionPage.getBoundingClientRect();
+  }, 200);
 });
   }
 });

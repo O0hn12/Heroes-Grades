@@ -85,7 +85,7 @@
   justify-content: center;
   min-height: 100vh;
   width: 100vw;
-  position: relative;
+  position: absolute;
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%);
@@ -192,9 +192,9 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("selectionPage").style.opacity = "1";
+  setTimeout(() => playBackgroundMusic(), 500); // تشغيل الموسيقى بعد نصف ثانية من تحميل الصفحة
 });
-
+document.addEventListener("click", () => playBackgroundMusic(), { once: true });
 </script>
 
 <!-- الصفحة الأولى: اختيار الفرقة -->

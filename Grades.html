@@ -17,69 +17,59 @@
     }
 
     #title-box {
-      background-color: rgba(0, 0, 0, 0.7); /* مربع غامق للعناوين */
+      background-color: rgba(0, 0, 0, 0.7);
       padding: 15px;
       border-radius: 10px;
       display: inline-block;
     }
 
-   .adventure-button {
-  width: 60%;
-  font-size: 24px;
-  padding: 15px;
-  font-weight: bold;
-  border-radius: 12px;
-  transition: all 0.3s ease-in-out;
-}
+    .adventure-button {
+      width: 60%;
+      font-size: 24px;
+      padding: 15px;
+      font-weight: bold;
+      border-radius: 12px;
+      transition: all 0.3s ease-in-out;
+    }
 
-button.adventure-button:hover {
-  background-color: #ff5722;
-  transform: scale(1.05);
-  box-shadow: 0px 4px 15px rgba(255, 87, 34, 0.5);
-}
+    button.adventure-button:hover {
+      background-color: #ff5722;
+      transform: scale(1.05);
+      box-shadow: 0px 4px 15px rgba(255, 87, 34, 0.5);
+    }
 
     #gradesPage {
-  display: none;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* ضبط العناصر في المنتصف أفقيًا */
-  justify-content: center; /* ضبط العناصر في المنتصف رأسيًا */
-  height: 100vh; /* يجعل الصفحة تمتد بطول الشاشة بالكامل */
-  height: 100vh;
-  position: fixed;
-  height: 100vh;
-  width: 100%; /* يجعل العناصر تأخذ عرض الشاشة بالكامل */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 20px;
-
-}
-
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100%;
+      position: fixed;
+      padding: 20px;
+    }
     input[type="text"], #gradeResult {
-  width: 80%;
-  padding: 15px;
-  font-size: 26px;
-  text-align: center;
-  border-radius: 15px;
-  font-family: 'Tajawal', sans-serif;
-  border: 3px solid #ff9800;
-  background-color: rgba(255, 255, 255, 0.95);
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  color: #333;
-  transition: all 0.3s ease-in-out;
-}
+      width: 80%;
+      padding: 15px;
+      font-size: 26px;
+      text-align: center;
+      border-radius: 15px;
+      font-family: 'Tajawal', sans-serif;
+      border: 3px solid #ff9800;
+      background-color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      color: #333;
+      transition: all 0.3s ease-in-out;
+    }
 
-input[type="text"]:focus, #gradeResult:focus {
-  border-color: #ff5722;
-  transform: scale(1.02);
-}
-
+    input[type="text"]:focus, #gradeResult:focus {
+      border-color: #ff5722;
+      transform: scale(1.02);
+    }
 
     #suggestions div {
       cursor: pointer;
@@ -94,164 +84,159 @@ input[type="text"]:focus, #gradeResult:focus {
     }
 
     #highlight-box {
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 12px;
-  display: block;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-  width: 90%;
-  margin: 10px auto;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-}
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 12px;
+      display: block;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      width: 90%;
+      margin: 10px auto;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    }
 
     @media (max-width: 768px) {
-  body {
-    background-size: contain;
-  }
+      body {
+        background-size: contain;
+      }
 
-  #title-box {
-    width: 90%;
-    padding: 10px;
-    font-size: 20px;
-  }
+      #title-box {
+        width: 90%;
+        padding: 10px;
+        font-size: 20px;
+      }
 
-  input[type="text"], #gradeResult {
-    width: 90%;
-    padding: 12px;
-    font-size: 22px;
-  }
+      input[type="text"], #gradeResult {
+        width: 90%;
+        padding: 12px;
+        font-size: 22px;
+      }
 
-  button.adventure-button {
-  width: 100%;
-  font-size: 22px;
-  padding: 14px;
-  border-radius: 14px;
-  font-weight: bold;
-}
+      button.adventure-button {
+        width: 100%;
+        font-size: 22px;
+        padding: 14px;
+        border-radius: 14px;
+        font-weight: bold;
+      }
 
-  #suggestions div {
-    font-size: 18px;
-    padding: 8px;
-  }
-}
+      #suggestions div {
+        font-size: 18px;
+        padding: 8px;
+      }
+    }
   </style>
 </head>
-  
+
 <script>
   document.addEventListener("click", () => playBackgroundMusic(), { once: true });
 </script>
 
-  <!-- الصفحة الأولى: اختيار الفرقة -->
-  <div id="selectionPage">
-    <h1 id="title-box">🦸‍♂️ مغامرة الأبطال! 🌟</h1>
-    <div id="highlight-box">اختر شخصيتك وانطلق!</div>
+<!-- الصفحة الأولى: اختيار الفرقة -->
+<div id="selectionPage">
+  <h1 id="title-box">🦸‍♂️ مغامرة الأبطال! 🌟</h1>
+  <div id="highlight-box">اختر شخصيتك وانطلق!</div>
 
-    <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
-    <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
-    <button class="adventure-button" onclick="nextStep('3ب')">🛸 المستكشف - 3ب</button>
-    <button class="adventure-button" onclick="nextStep('4ب')">🏹 القناص - 4ب</button>
-    <button class="adventure-button" onclick="nextStep('5ب')">🚀 الطيار - 5ب</button>
-    <button class="adventure-button" onclick="nextStep('6ب')">🤖 الروبوت - 6ب</button>
-  </div>
-
-  <!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
-  <div id="gradesPage">
-    <h1 id="title-box">🔍 ابحث عن درجتك 🌟</h1>
-<div id="input-box">
-  <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
+  <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
+  <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
+  <button class="adventure-button" onclick="nextStep('3ب')">🛸 المستكشف - 3ب</button>
+  <button class="adventure-button" onclick="nextStep('4ب')">🏹 القناص - 4ب</button>
+  <button class="adventure-button" onclick="nextStep('5ب')">🚀 الطيار - 5ب</button>
+  <button class="adventure-button" onclick="nextStep('6ب')">🤖 الروبوت - 6ب</button>
 </div>
-    <div id="suggestions"></div>
-<button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
-<div id="result-box">
-  <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا!" readonly>
-</div>
+<!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
+<div id="gradesPage">
+  <h1 id="title-box">🔍 ابحث عن درجتك 🌟</h1>
+  <div id="input-box">
+    <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
   </div>
+  <div id="suggestions"></div>
+  <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
+  <div id="result-box">
+    <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا!" readonly>
+  </div>
+</div>
 
-  <script>
+<script>
+  let selectedClass = "";
 
-
-  <script>
-    let selectedClass = "";
-
-    function nextStep(className) {
-      selectedClass = className;
-      document.getElementById("selectionPage").style.opacity = "0";
+  function nextStep(className) {
+    selectedClass = className;
+    document.getElementById("selectionPage").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("selectionPage").style.display = "none";
+      document.getElementById("gradesPage").style.display = "block";
       setTimeout(() => {
-        document.getElementById("selectionPage").style.display = "none";
-        document.getElementById("gradesPage").style.display = "block";
-        setTimeout(() => {
-          document.getElementById("gradesPage").style.opacity = "1";
-        }, 100);
-      }, 1000);
-    }
+        document.getElementById("gradesPage").style.opacity = "1";
+      }, 100);
+    }, 1000);
+  }
 
-    function playBackgroundMusic() {
-      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
-      audio.loop = true; // تشغيل الصوت في تكرار مستمر
-      audio.play().catch(error => console.log("Audio autoplay blocked by browser:", error)); // التعامل مع مشكلة التشغيل التلقائي
-    }
+  function playBackgroundMusic() {
+    let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
+    audio.loop = true;
+    audio.play().catch(error => console.log("Audio autoplay blocked by browser:", error));
+  }
 
-    document.getElementById("studentName").addEventListener("input", function() {
-  let input = this.value.toLowerCase();
-  let requestUrl = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`;
+  document.getElementById("studentName").addEventListener("input", function() {
+    let input = this.value.toLowerCase();
+    let requestUrl = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`;
 
-  fetch(requestUrl)
-  .then(response => response.json())
-  .then(names => {
-    console.log("🟢 البيانات المسترجعة:", names); // طباعة البيانات في الكونسول
+    fetch(requestUrl)
+      .then(response => response.json())
+      .then(names => {
+        console.log("🟢 البيانات المسترجعة:", names);
 
-    if (!Array.isArray(names) || names.length === 0) {
-      console.error("🔴 البيانات فارغة أو غير صالحة!");
-      document.getElementById("suggestions").innerHTML = "<p>⚠️ لا توجد بيانات متاحة!</p>";
+        if (!Array.isArray(names) || names.length === 0) {
+          console.error("🔴 البيانات فارغة أو غير صالحة!");
+          document.getElementById("suggestions").innerHTML = "<p>⚠️ لا توجد بيانات متاحة!</p>";
+          return;
+        }
+
+        let filteredNames = names.filter(name => name.toLowerCase().includes(input));
+        showSuggestions(filteredNames);
+      })
+      .catch(error => {
+        console.error("🔴 خطأ في تحميل البيانات:", error);
+        document.getElementById("suggestions").innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
+      });
+  });
+
+  function showSuggestions(names) {
+    let list = document.getElementById("suggestions");
+    list.innerHTML = "";
+
+    if (names.length === 0) {
+      list.innerHTML = "<p>⚠️ لا توجد نتائج</p>";
       return;
     }
 
-    let filteredNames = names.filter(name => name.toLowerCase().includes(input));
-    showSuggestions(filteredNames);
-  })
-  .catch(error => {
-    console.error("🔴 خطأ في تحميل البيانات:", error);
-    document.getElementById("suggestions").innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
-  });
-});
-
-    function showSuggestions(names) {
-  let list = document.getElementById("suggestions");
-  list.innerHTML = "";
-
-  if (names.length === 0) {
-    list.innerHTML = "<p>⚠️ لا توجد نتائج</p>";
-    return;
+    names.forEach(name => {
+      let item = document.createElement("div");
+      item.textContent = name;
+      item.onclick = function() {
+        document.getElementById("studentName").value = name;
+        list.innerHTML = "";
+      };
+      list.appendChild(item);
+    });
   }
 
-  names.forEach(name => {
-    let item = document.createElement("div");
-    item.textContent = name;
-    item.onclick = function() {
-      document.getElementById("studentName").value = name;
-      list.innerHTML = ""; // إخفاء الاقتراحات بعد الاختيار
-    };
-    list.appendChild(item);
-  });
-}
+  function fetchGrade() {
+    let studentName = document.getElementById("studentName").value;
+    let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev/";
+    let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
 
-    function fetchGrade() {
-      let studentName = document.getElementById("studentName").value;
-      let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev/";
-      let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
-
-      fetch(requestUrl)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
-        })
-        .catch(error => console.error("Error:", error));
-    }
-
-  </script>
+    fetch(requestUrl)
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
+      })
+      .catch(error => console.error("Error:", error));
+  }
+</script>
 
 </body>
 </html>

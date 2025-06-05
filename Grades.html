@@ -69,12 +69,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  position: relative; /* منع خروج المحتوى من الشاشة */
+  margin: auto;
+  text-align: center;
 }
 
     input[type="text"], #gradeResult {
@@ -132,8 +131,6 @@
   width: 80%;
   margin: auto;
   justify-items: center;
-  position: relative;
-  top: 0; /* يضمن بقاء الأزرار في مكانها الصحيح */
 }
 
     @media (max-width: 768px) {

@@ -203,12 +203,14 @@
   document.addEventListener("DOMContentLoaded", function() {
   let selectionPage = document.getElementById("selectionPage");
   if (selectionPage) {
+    console.log("✅ الصفحة بدأت التحميل");
     selectionPage.style.display = "flex";
     selectionPage.style.opacity = "1";
     selectionPage.style.position = "fixed";
     selectionPage.style.top = "50%";
     selectionPage.style.transform = "translate(-50%, -50%)";
-
+    
+    console.log("📏 قبل إعادة الحساب:", selectionPage.getBoundingClientRect());
     // 🔥 إعادة ضبط الصفحة مرتين لضمان تحميلها بشكل صحيح
     setTimeout(() => {
       selectionPage.getBoundingClientRect();

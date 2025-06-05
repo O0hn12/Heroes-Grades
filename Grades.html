@@ -64,6 +64,19 @@
   width: 90%;
   max-width: 400px;
 }
+    #selectionPage, #gradesPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
     input[type="text"], #gradeResult {
       width: 80%;
@@ -115,10 +128,11 @@
 
     #button-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 أعمدة للحفاظ على التوزيع */
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  width: 90%;
+  width: 80%;
   margin: auto;
+  justify-items: center;
 }
 
     @media (max-width: 768px) {
@@ -167,10 +181,11 @@
 
     @media (max-width: 600px) {
   #button-container {
-    grid-template-columns: repeat(2, 1fr); /* يصبح التوزيع صفين بدل ثلاثة */
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    width: 90%;
   }
 }
-
   </style>
 </head>
 

@@ -196,9 +196,11 @@
 </head>
 
 <script>
+  document.addEventListener("click", function() {
+  playBackgroundMusic();
+}, { once: true }); // يضمن تشغيل الموسيقى عند أول ضغط بدون تكرار
   document.addEventListener("DOMContentLoaded", function() {
   let selectionPage = document.getElementById("selectionPage");
-  setTimeout(() => playBackgroundMusic(), 500); // تشغيل الموسيقى بعد نصف ثانية من تحميل الصفحة
   if (selectionPage) {
     selectionPage.style.display = "flex";
     selectionPage.style.opacity = "1";

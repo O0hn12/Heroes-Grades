@@ -113,6 +113,14 @@
       box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
     }
 
+    #button-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 أعمدة للحفاظ على التوزيع */
+  gap: 10px;
+  width: 90%;
+  margin: auto;
+}
+
     @media (max-width: 768px) {
       body {
         background-size: contain;
@@ -156,6 +164,13 @@
     justify-content: center; /* يجعل المحتوى وسط الشاشة عند الوضع العمودي */
   }
 }
+
+    @media (max-width: 600px) {
+  #button-container {
+    grid-template-columns: repeat(2, 1fr); /* يصبح التوزيع صفين بدل ثلاثة */
+  }
+}
+
   </style>
 </head>
 
@@ -168,12 +183,15 @@
   <h1 id="title-box">🦸‍♂️ مغامرة الأبطال 🌟</h1>
   <div id="highlight-box">اختر شخصيتك وانطلق</div>
 
+  <div id="button-container">
   <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
   <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
   <button class="adventure-button" onclick="nextStep('3ب')">🛸 المستكشف - 3ب</button>
   <button class="adventure-button" onclick="nextStep('4ب')">🏹 القناص - 4ب</button>
   <button class="adventure-button" onclick="nextStep('5ب')">🚀 الطيار - 5ب</button>
   <button class="adventure-button" onclick="nextStep('6ب')">🤖 الروبوت - 6ب</button>
+</div>
+
 </div>
 <!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
 <div id="gradesPage">

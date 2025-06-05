@@ -227,7 +227,7 @@
   function fetchGrade() {
     let studentName = document.getElementById("studentName").value;
     let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev/";
-    let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
+    let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName) + "&column=L";
 
     fetch(requestUrl)
       .then(response => response.text())

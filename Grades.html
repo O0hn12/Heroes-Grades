@@ -52,6 +52,20 @@
       box-shadow: 0px 4px 15px rgba(255, 87, 34, 0.5);
     }
 
+    #introPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+    
     #gradesPage {
   display: none;
   opacity: 0;
@@ -84,7 +98,7 @@
   max-width: 400px;
 }
     #selectionPage {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -94,7 +108,7 @@
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%);
-  opacity: 1; /* يبدأ مخفي لضمان عدم حدوث أخطاء في التوزيع */
+  opacity: 0; /* يبدأ مخفي لضمان عدم حدوث أخطاء في التوزيع */
   transition: opacity 0.5s ease-in-out;
   will-change: transform; /* يجعل المتصفح يجهّز العنصر قبل ظهوره */
 }
@@ -203,6 +217,12 @@
 }, { once: true }); // يضمن تشغيل الموسيقى عند أول ضغط بدون تكرار
 </script>
 
+  <div id="introPage">
+  <h1 id="title-box">🦸‍♂️ مغامرة الأبطال 🌟</h1>
+  <div id="highlight-box">جاهز للمغامرة؟ اضغط الزر للبدء!</div>
+  <button class="adventure-button" onclick="startGame()">🚀 يلا بينا</button>
+  </div>
+
 <!-- الصفحة الأولى: اختيار الفرقة -->
 <div id="selectionPage">
   <h1 id="title-box">🦸‍♂️ مغامرة الأبطال 🌟</h1>
@@ -233,6 +253,17 @@
 </div>
 
 <script>
+
+  function startGame() {
+  document.getElementById("introPage").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("introPage").style.display = "none";
+    document.getElementById("selectionPage").style.display = "flex";
+    setTimeout(() => {
+      document.getElementById("selectionPage").style.opacity = "1";
+    }, 100);
+  }, 500);
+}
   let selectedClass = "";
 
   function nextStep(className) {

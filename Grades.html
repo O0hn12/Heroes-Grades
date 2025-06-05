@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>عرض الدرجات</title>
+  <style>
+    #suggestions div { cursor: pointer; padding: 5px; }
+    #suggestions div:hover { background-color: #ddd; }
+  </style>
 </head>
 <body>
   <h2>اختر الفرقة</h2>
@@ -19,8 +23,9 @@
   <div id="nameSection" style="display:none;">
     <h2>ابحث عن درجتك</h2>
     <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
+    <div id="suggestions"></div>
     <button onclick="fetchGrade()">عرض الدرجة</button>
-    <p id="result"></p>
+    <input type="text" id="gradeResult" placeholder="الدرجة ستظهر هنا" readonly>
   </div>
 
   <script>
@@ -31,15 +36,42 @@
       document.getElementById("nameSection").style.display = "block";
     }
 
+    document.getElementById("studentName").addEventListener("input", function() {
+      let input = this.value.toLowerCase();
+      let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
+      let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&names=true";
+
+      fetch(requestUrl)
+        .then(response => response.json())
+        .then(names => {
+          let suggestions = names.filter(name => name.toLowerCase().startsWith(input));
+          showSuggestions(suggestions);
+        })
+        .catch(error => console.error("Error:", error));
+    });
+
+    function showSuggestions(names) {
+      let list = document.getElementById("suggestions");
+      list.innerHTML = "";
+      names.forEach(name => {
+        let item = document.createElement("div");
+        item.textContent = name;
+        item.onclick = function() {
+          document.getElementById("studentName").value = name;
+          list.innerHTML = "";
+        };
+        list.appendChild(item);
+      });
+    }
+
     function fetchGrade() {
       let studentName = document.getElementById("studentName").value;
-      
       let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
       let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
 
       fetch(requestUrl)
         .then(response => response.text())
-        .then(data => document.getElementById("result").innerText = "درجتك: " + data)
+        .then(data => document.getElementById("gradeResult").value = data)
         .catch(error => console.error("Error:", error));
     }
   </script>

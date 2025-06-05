@@ -215,6 +215,7 @@
     setTimeout(() => {
       selectionPage.getBoundingClientRect();
       window.requestAnimationFrame(() => selectionPage.getBoundingClientRect());
+      console.log("📏 بعد إعادة الحساب:", selectionPage.getBoundingClientRect());
     }, 100);
 
     setTimeout(() => {

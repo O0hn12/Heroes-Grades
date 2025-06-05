@@ -219,7 +219,7 @@
 
   <div id="introPage">
   <h1 id="title-box">🦸‍♂️ مغامرة الأبطال 🌟</h1>
-  <div id="highlight-box">جاهز للمغامرة؟ اضغط الزر للبدء!</div>
+  <div id="highlight-box">جاهز للمغامرة؟ اضغط الزر للبدء</div>
   <button class="adventure-button" onclick="startGame()">🚀 يلا بينا</button>
   </div>
 
@@ -264,12 +264,12 @@
     return;
   }
 
-  introPage.style.opacity = "0"; // إخفاء الصفحة الأولى تدريجيًا
+  introPage.style.opacity = "0"; // تأثير إخفاء تدريجي
   setTimeout(() => {
-    introPage.style.display = "none"; // إخفاء الصفحة الأولى نهائيًا
+    introPage.style.display = "none"; // إخفاء الصفحة نهائيًا
     selectionPage.style.display = "flex"; // إظهار صفحة اختيار الفرقة
     setTimeout(() => {
-      selectionPage.style.opacity = "1"; // تأثير ظهور تدريجي
+      selectionPage.style.opacity = "1"; // يجعل الصفحة تظهر بشكل تدريجي
     }, 100);
   }, 500);
 }

@@ -2,37 +2,72 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>عرض الدرجات</title>
+  <title>مغامرة الدرجات</title>
   <style>
-    #suggestions div { cursor: pointer; padding: 5px; }
-    #suggestions div:hover { background-color: #ddd; }
+    body {
+      background: url('https://i.ibb.co/FbfJxWvn/logo.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      color: white;
+    }
+    
+    .adventure-button {
+      display: inline-block;
+      padding: 15px;
+      margin: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff9800;
+      color: white;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    #nameSection {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #suggestions div {
+      cursor: pointer;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    #suggestions div:hover {
+      background-color: #ffd700;
+    }
   </style>
 </head>
 <body>
-  <h2>اختر الفرقة</h2>
-  <select id="classSelect">
-    <option value="1ب">1ب</option>
-    <option value="2ب">2ب</option>
-    <option value="3ب">3ب</option>
-    <option value="4ب">4ب</option>
-    <option value="5ب">5ب</option>
-    <option value="6ب">6ب</option>
-  </select>
-  <button onclick="nextStep()">التالي</button>
 
-  <div id="nameSection" style="display:none;">
-    <h2>ابحث عن درجتك</h2>
+  <h1>🦸‍♂️ مغامرة الدرجات! 🌟</h1>
+  <h2>اختر شخصيتك وانطلق!</h2>
+
+  <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
+  <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
+  <button class="adventure-button" onclick="nextStep('3ب')">🛸 المستكشف - 3ب</button>
+  <button class="adventure-button" onclick="nextStep('4ب')">🏹 القناص - 4ب</button>
+  <button class="adventure-button" onclick="nextStep('5ب')">🚀 الطيار - 5ب</button>
+  <button class="adventure-button" onclick="nextStep('6ب')">🤖 الروبوت - 6ب</button>
+
+  <div id="nameSection">
+    <h2>🔍 اكتب اسمك للبحث عن درجتك!</h2>
     <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
     <div id="suggestions"></div>
-    <button onclick="fetchGrade()">عرض الدرجة</button>
-    <input type="text" id="gradeResult" placeholder="الدرجة ستظهر هنا" readonly>
+    <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
+    <input type="text" id="gradeResult" placeholder="✨ درجتك ستظهر هنا!" readonly>
   </div>
 
   <script>
     let selectedClass = "";
 
-    function nextStep() {
-      selectedClass = document.getElementById("classSelect").value;
+    function nextStep(className) {
+      selectedClass = className;
       document.getElementById("nameSection").style.display = "block";
     }
 
@@ -66,14 +101,23 @@
 
     function fetchGrade() {
       let studentName = document.getElementById("studentName").value;
-      let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
+      let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev//";
       let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
 
       fetch(requestUrl)
         .then(response => response.text())
-        .then(data => document.getElementById("gradeResult").value = data)
+        .then(data => {
+          document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
+          playSuccessSound();
+        })
         .catch(error => console.error("Error:", error));
     }
+
+    function playSuccessSound() {
+      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
+      audio.play();
+    }
   </script>
+
 </body>
 </html>

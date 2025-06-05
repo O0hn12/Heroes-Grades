@@ -324,14 +324,18 @@ document.addEventListener("click", () => playBackgroundMusic(), { once: true });
 
   <script>
   document.addEventListener("DOMContentLoaded", function() {
-    let selectionPage = document.getElementById("selectionPage");
-    if (selectionPage) {
-      selectionPage.style.display = "flex"; /* يضمن أن الصفحة تظهر بدون مشاكل */
-      selectionPage.style.opacity = "1";
-      selectionPage.style.position = "absolute";
-      selectionPage.style.transform = "translate(-50%, -50%)";
-    }
-  });
+  let selectionPage = document.getElementById("selectionPage");
+  if (selectionPage) {
+    selectionPage.style.display = "flex";
+    selectionPage.style.opacity = "1";
+    selectionPage.style.position = "absolute";
+    selectionPage.style.top = "50%"; /* ضبط الموضع فورًا */
+    selectionPage.style.transform = "translate(-50%, -50%)";
+  
+    // 🔥 إجبار تحديث الصفحة بعد التحميل مباشرة 🔥
+    selectionPage.getBoundingClientRect(); 
+  }
+});
 </script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
   <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/FbfJxWvn/logo.png">
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>مغامرة الأبطال</title>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
   <style>
@@ -74,6 +75,35 @@ input[type="text"]:focus, #gradeResult:focus {
     #suggestions div:hover {
       background-color: #ffd700;
     }
+
+    @media (max-width: 768px) {
+  body {
+    background-size: contain;
+  }
+
+  #title-box {
+    width: 90%;
+    padding: 10px;
+    font-size: 20px;
+  }
+
+  input[type="text"], #gradeResult {
+    width: 90%;
+    padding: 12px;
+    font-size: 22px;
+  }
+
+  button.adventure-button {
+    width: 90%;
+    font-size: 20px;
+    padding: 12px;
+  }
+
+  #suggestions div {
+    font-size: 18px;
+    padding: 8px;
+  }
+}
   </style>
 </head>
   

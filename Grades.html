@@ -78,7 +78,7 @@ input[type="text"]:focus, #gradeResult:focus {
 </head>
   
 <script>
-  document.addEventListener("DOMContentLoaded", () => playBackgroundMusic());
+  document.addEventListener("click", () => playBackgroundMusic(), { once: true });
 </script>
 
   <!-- الصفحة الأولى: اختيار الفرقة -->
@@ -134,11 +134,15 @@ input[type="text"]:focus, #gradeResult:focus {
   fetch(requestUrl)
   .then(response => response.json())
   .then(names => {
-    console.log("🟢 البيانات المسترجعة من Cloudflare:", names); // طباعة البيانات
-    let filteredNames = names.filter(name => 
-      name && typeof name === "string" && name.toLowerCase().includes(input)
-    );
-    console.log("🟡 الأسماء بعد التصفية:", filteredNames); // طباعة الأسماء المفلترة
+    console.log("🟢 البيانات المسترجعة:", names); // طباعة البيانات في الكونسول
+
+    if (!Array.isArray(names) || names.length === 0) {
+      console.error("🔴 البيانات فارغة أو غير صالحة!");
+      document.getElementById("suggestions").innerHTML = "<p>⚠️ لا توجد بيانات متاحة!</p>";
+      return;
+    }
+
+    let filteredNames = names.filter(name => name.toLowerCase().includes(input));
     showSuggestions(filteredNames);
   })
   .catch(error => {

@@ -2,7 +2,7 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>اختيار الفرقة</title>
+  <title>عرض الدرجات</title>
 </head>
 <body>
   <h2>اختر الفرقة</h2>
@@ -14,12 +14,33 @@
     <option value="5ب">5ب</option>
     <option value="6ب">6ب</option>
   </select>
-  <button onclick="goToNamePage()">التالي</button>
+  <button onclick="nextStep()">التالي</button>
+
+  <div id="nameSection" style="display:none;">
+    <h2>ابحث عن درجتك</h2>
+    <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
+    <button onclick="fetchGrade()">عرض الدرجة</button>
+    <p id="result"></p>
+  </div>
 
   <script>
-    function goToNamePage() {
-      var selectedClass = document.getElementById("classSelect").value;
-      window.location.href = "search.html?class=" + selectedClass;
+    let selectedClass = "";
+
+    function nextStep() {
+      selectedClass = document.getElementById("classSelect").value;
+      document.getElementById("nameSection").style.display = "block";
+    }
+
+    function fetchGrade() {
+      let studentName = document.getElementById("studentName").value;
+      
+      let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
+      let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
+
+      fetch(requestUrl)
+        .then(response => response.text())
+        .then(data => document.getElementById("result").innerText = "درجتك: " + data)
+        .catch(error => console.error("Error:", error));
     }
   </script>
 </body>

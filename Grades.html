@@ -219,7 +219,7 @@
 
   <div id="introPage">
   <h1 id="title-box">🦸‍♂️ مغامرة الأبطال 🌟</h1>
-  <div id="highlight-box">جاهز للمغامرة؟ اضغط الزر للبدء</div>
+  <div id="highlight-box">جاهز للمغامرة؟</div>
   <button class="adventure-button" id="startButton">🚀 يلا بينا</button>
   </div>
 
@@ -272,6 +272,14 @@
       selectionPage.style.opacity = "1"; // يجعل الصفحة تظهر بشكل تدريجي
     }, 100);
   }, 500);
+    document.addEventListener("DOMContentLoaded", function() {
+  let startButton = document.getElementById("startButton");
+  if (startButton) {
+    startButton.addEventListener("click", startGame);
+  } else {
+    console.error("❌ زر يلا بينا غير موجود!");
+  }
+});
 }
 
   let selectedClass = "";

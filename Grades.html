@@ -39,19 +39,22 @@
     }
 
     #gradesPage {
-      display: none;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      width: 100%;
-      position: fixed;
-      padding: 20px;
-    }
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: auto; /* بدل 100vh */
+  min-height: 100vh; /* يضمن ظهور كامل الصفحة */
+  width: 100%;
+  position: fixed;
+  padding: 20px;
+  overflow-y: auto; /* يسمح بالتمرير عند الحاجة */
+}
+
     input[type="text"], #gradeResult {
       width: 80%;
       padding: 15px;

@@ -329,11 +329,13 @@ document.addEventListener("click", () => playBackgroundMusic(), { once: true });
     selectionPage.style.display = "flex";
     selectionPage.style.opacity = "1";
     selectionPage.style.position = "absolute";
-    selectionPage.style.top = "50%"; /* ضبط الموضع فورًا */
+    selectionPage.style.top = "50%";
     selectionPage.style.transform = "translate(-50%, -50%)";
-  
-    // 🔥 إجبار تحديث الصفحة بعد التحميل مباشرة 🔥
-    selectionPage.getBoundingClientRect(); 
+    
+    // 🔥 إجبار المتصفح على إعادة حساب كل الأبعاد 🔥
+    window.requestAnimationFrame(() => {
+      selectionPage.getBoundingClientRect(); 
+    });
   }
 });
 </script>

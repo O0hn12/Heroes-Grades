@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.ibb.co/FbfJxWvn/logo.png">
   <meta charset="UTF-8">
-  <title>مغامرة الدرجات</title>
+  <title>مغامرة الأبطال</title>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
   <style>
     body {
@@ -12,6 +13,13 @@
       background-size: cover;
       color: white;
       transition: opacity 1s ease-in-out;
+    }
+
+    #title-box {
+      background-color: rgba(0, 0, 0, 0.7); /* مربع غامق للعناوين */
+      padding: 15px;
+      border-radius: 10px;
+      display: inline-block;
     }
 
     .adventure-button {
@@ -44,11 +52,14 @@
     }
   </style>
 </head>
-<body>
+  
+<script>
+  document.addEventListener("DOMContentLoaded", () => playBackgroundMusic());
+</script>
 
   <!-- الصفحة الأولى: اختيار الفرقة -->
   <div id="selectionPage">
-    <h1>🦸‍♂️ مغامرة الدرجات! 🌟</h1>
+    <h1 id="title-box">🦸‍♂️ مغامرة الأبطال! 🌟</h1>
     <h2>اختر شخصيتك وانطلق!</h2>
 
     <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
@@ -61,7 +72,7 @@
 
   <!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
   <div id="gradesPage">
-    <h1>🔍 ابحث عن درجتك! 🌟</h1>
+    <h1 id="title-box">🔍 ابحث عن درجتك! 🌟</h1>
     <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
     <div id="suggestions"></div>
     <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
@@ -81,6 +92,12 @@
           document.getElementById("gradesPage").style.opacity = "1";
         }, 100);
       }, 1000);
+    }
+
+    function playBackgroundMusic() {
+      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
+      audio.loop = true; // تشغيل الصوت في تكرار مستمر
+      audio.play().catch(error => console.log("Audio autoplay blocked by browser:", error)); // التعامل مع مشكلة التشغيل التلقائي
     }
 
     document.getElementById("studentName").addEventListener("input", function() {
@@ -120,15 +137,10 @@
         .then(response => response.text())
         .then(data => {
           document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
-          playSuccessSound();
         })
         .catch(error => console.error("Error:", error));
     }
 
-    function playSuccessSound() {
-      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
-      audio.play();
-    }
   </script>
 
 </body>

@@ -230,11 +230,16 @@
     let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName) + "&column=L";
 
     fetch(requestUrl)
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
-      })
-      .catch(error => console.error("Error:", error));
+  .then(response => response.text())
+  .then(data => {
+    console.log("🔍 البيانات المسترجعة:", data); // تحقق مما يتم استرجاعه
+    if (data.trim() === "" || data === "0") {
+      document.getElementById("gradeResult").value = "❌ لا توجد بيانات لهذا الاسم!";
+    } else {
+      document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
+    }
+  })
+  .catch(error => console.error("🔴 خطأ في جلب البيانات:", error));
   }
 </script>
 

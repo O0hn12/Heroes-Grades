@@ -22,16 +22,20 @@
       display: inline-block;
     }
 
-    .adventure-button {
-      padding: 15px;
-      margin: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff9800;
-      color: white;
-    }
+   .adventure-button {
+  width: 60%;
+  font-size: 24px;
+  padding: 15px;
+  font-weight: bold;
+  border-radius: 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+button.adventure-button:hover {
+  background-color: #ff5722;
+  transform: scale(1.05);
+  box-shadow: 0px 4px 15px rgba(255, 87, 34, 0.5);
+}
 
     #gradesPage {
       display: none;
@@ -42,13 +46,20 @@
     input[type="text"], #gradeResult {
   width: 80%;
   padding: 15px;
-  font-size: 24px;
+  font-size: 26px;
   text-align: center;
-  border-radius: 10px;
+  border-radius: 15px;
   font-family: 'Tajawal', sans-serif;
-  border: 2px solid #ff9800;
-  background-color: rgba(255, 255, 255, 0.9);
-  color: #000;
+  border: 3px solid #ff9800;
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, #gradeResult:focus {
+  border-color: #ff5722;
+  transform: scale(1.02);
 }
 
 

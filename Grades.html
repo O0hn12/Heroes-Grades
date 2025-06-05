@@ -2,18 +2,18 @@
 <html lang="ar">
 <head>
   <meta charset="UTF-8">
-  <title>مغامرة الابطال</title>
+  <title>مغامرة الدرجات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
   <style>
     body {
-      background: url('https://i.ibb.co/FbfJxWvn/logo.png') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Baloo Bhaijaan 2', cursive;
       text-align: center;
+      background: url('https://www.example.com/adventure-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
       color: white;
     }
-    
+
     .adventure-button {
-      display: inline-block;
       padding: 15px;
       margin: 10px;
       font-size: 20px;
@@ -22,12 +22,53 @@
       border-radius: 10px;
       background-color: #ff9800;
       color: white;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🦸‍♂️ مغامرة الدرجات! 🌟</h1>
+  <h2>اختر شخصيتك وانطلق!</h2>
+
+  <button class="adventure-button" onclick="goToGradesPage('1ب')">⚔️ الفارس - 1ب</button>
+  <button class="adventure-button" onclick="goToGradesPage('2ب')">🔮 الساحر - 2ب</button>
+  <button class="adventure-button" onclick="goToGradesPage('3ب')">🛸 المستكشف - 3ب</button>
+  <button class="adventure-button" onclick="goToGradesPage('4ب')">🏹 القناص - 4ب</button>
+  <button class="adventure-button" onclick="goToGradesPage('5ب')">🚀 الطيار - 5ب</button>
+  <button class="adventure-button" onclick="goToGradesPage('6ب')">🤖 الروبوت - 6ب</button>
+
+  <script>
+    function goToGradesPage(className) {
+      window.location.href = "grades.html?class=" + className;
+    }
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>عرض درجتك</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Baloo Bhaijaan 2', cursive;
+      text-align: center;
+      background: url('https://www.example.com/adventure-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
     }
 
-    #nameSection {
-      display: none;
-      margin-top: 20px;
+    .adventure-button {
+      padding: 15px;
+      margin: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+      background-color: #ff9800;
+      color: white;
     }
 
     #suggestions div {
@@ -45,31 +86,15 @@
 </head>
 <body>
 
-  <h1>🦸‍♂️ مغامرة الدرجات! 🌟</h1>
-  <h2>اختر شخصيتك وانطلق!</h2>
-
-  <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
-  <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
-  <button class="adventure-button" onclick="nextStep('3ب')">🛸 المستكشف - 3ب</button>
-  <button class="adventure-button" onclick="nextStep('4ب')">🏹 القناص - 4ب</button>
-  <button class="adventure-button" onclick="nextStep('5ب')">🚀 الطيار - 5ب</button>
-  <button class="adventure-button" onclick="nextStep('6ب')">🤖 الروبوت - 6ب</button>
-
-  <div id="nameSection">
-    <h2>🔍 اكتب اسمك للبحث عن درجتك!</h2>
-    <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
-    <div id="suggestions"></div>
-    <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
-    <input type="text" id="gradeResult" placeholder="✨ درجتك ستظهر هنا!" readonly>
-  </div>
+  <h1>🔍 ابحث عن درجتك! 🌟</h1>
+  <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
+  <div id="suggestions"></div>
+  <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
+  <input type="text" id="gradeResult" placeholder="✨ درجتك ستظهر هنا!" readonly>
 
   <script>
-    let selectedClass = "";
-
-    function nextStep(className) {
-      selectedClass = className;
-      document.getElementById("nameSection").style.display = "block";
-    }
+    let params = new URLSearchParams(window.location.search);
+    let selectedClass = params.get("class");
 
     document.getElementById("studentName").addEventListener("input", function() {
       let input = this.value.toLowerCase();
@@ -101,7 +126,7 @@
 
     function fetchGrade() {
       let studentName = document.getElementById("studentName").value;
-      let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev//";
+      let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
       let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
 
       fetch(requestUrl)
@@ -114,7 +139,7 @@
     }
 
     function playSuccessSound() {
-      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
+      let audio = new Audio("https://raw.githubusercontent.com/YOUR_USERNAME/adventure-sound/main/water-adventure-22474.mp3");
       audio.play();
     }
   </script>

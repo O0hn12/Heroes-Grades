@@ -72,16 +72,19 @@
     }
 
     #suggestions div {
-      cursor: pointer;
-      padding: 5px;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 5px;
-      margin: 5px;
-    }
+  cursor: pointer;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.8); /* خلفية غامقة */
+  border-radius: 8px;
+  margin: 5px;
+  color: white; /* جعل النص أبيض ليتباين مع الخلفية */
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
 
-    #suggestions div:hover {
-      background-color: #ffd700;
-    }
+#suggestions div:hover {
+  background-color: rgba(50, 50, 50, 0.9); /* لون أغمق عند مرور الماوس */
+}
 
     #highlight-box {
       background-color: rgba(0, 0, 0, 0.8);
@@ -136,8 +139,8 @@
 
 <!-- الصفحة الأولى: اختيار الفرقة -->
 <div id="selectionPage">
-  <h1 id="title-box">🦸‍♂️ مغامرة الأبطال! 🌟</h1>
-  <div id="highlight-box">اختر شخصيتك وانطلق!</div>
+  <h1 id="title-box">🦸‍♂️ مغامرة الأبطال 🌟</h1>
+  <div id="highlight-box">اختر شخصيتك وانطلق</div>
 
   <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
   <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
@@ -155,7 +158,7 @@
   <div id="suggestions"></div>
   <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
   <div id="result-box">
-    <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا!" readonly>
+    <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا" readonly>
   </div>
   <button class="adventure-button" onclick="goBack()">🔙 رجوع</button>
 </div>

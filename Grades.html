@@ -255,15 +255,25 @@
 <script>
 
   function startGame() {
-  document.getElementById("introPage").style.opacity = "0";
+  console.log("تم الضغط على الزر"); // تأكيد تنفيذ الوظيفة
+  let introPage = document.getElementById("introPage");
+  let selectionPage = document.getElementById("selectionPage");
+
+  if (!introPage || !selectionPage) {
+    console.error("❌ خطأ: الصفحات غير موجودة!");
+    return;
+  }
+
+  introPage.style.opacity = "0";
   setTimeout(() => {
-    document.getElementById("introPage").style.display = "none";
-    document.getElementById("selectionPage").style.display = "flex";
+    introPage.style.display = "none";
+    selectionPage.style.display = "flex";
     setTimeout(() => {
-      document.getElementById("selectionPage").style.opacity = "1";
-    }, 100);
+      selectionPage.style.opacity = "1";
+    }, 50);
   }, 500);
 }
+
   let selectedClass = "";
 
   function nextStep(className) {

@@ -11,6 +11,7 @@
       background: url('https://i.ibb.co/FbfJxWvn/logo.png') no-repeat center center fixed;
       background-size: cover;
       color: white;
+      transition: opacity 1s ease-in-out;
     }
 
     .adventure-button {
@@ -23,52 +24,11 @@
       background-color: #ff9800;
       color: white;
     }
-  </style>
-</head>
-<body>
 
-  <h1>🦸‍♂️ مغامرة الدرجات! 🌟</h1>
-  <h2>اختر شخصيتك وانطلق!</h2>
-
-  <button class="adventure-button" onclick="goToGradesPage('1ب')">⚔️ الفارس - 1ب</button>
-  <button class="adventure-button" onclick="goToGradesPage('2ب')">🔮 الساحر - 2ب</button>
-  <button class="adventure-button" onclick="goToGradesPage('3ب')">🛸 المستكشف - 3ب</button>
-  <button class="adventure-button" onclick="goToGradesPage('4ب')">🏹 القناص - 4ب</button>
-  <button class="adventure-button" onclick="goToGradesPage('5ب')">🚀 الطيار - 5ب</button>
-  <button class="adventure-button" onclick="goToGradesPage('6ب')">🤖 الروبوت - 6ب</button>
-
-  <script>
-    function goToGradesPage(className) {
-      window.location.href = "grades.html?class=" + className;
-    }
-  </script>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>عرض درجتك</title>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Baloo Bhaijaan 2', cursive;
-      text-align: center;
-      background: url('https://i.ibb.co/FbfJxWvn/logo.png') no-repeat center center fixed;
-      background-size: cover;
-      color: white;
-    }
-
-    .adventure-button {
-      padding: 15px;
-      margin: 10px;
-      font-size: 20px;
-      cursor: pointer;
-      border: none;
-      border-radius: 10px;
-      background-color: #ff9800;
-      color: white;
+    #gradesPage {
+      display: none;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
     #suggestions div {
@@ -86,15 +46,42 @@
 </head>
 <body>
 
-  <h1>🔍 ابحث عن درجتك! 🌟</h1>
-  <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
-  <div id="suggestions"></div>
-  <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
-  <input type="text" id="gradeResult" placeholder="✨ درجتك ستظهر هنا!" readonly>
+  <!-- الصفحة الأولى: اختيار الفرقة -->
+  <div id="selectionPage">
+    <h1>🦸‍♂️ مغامرة الدرجات! 🌟</h1>
+    <h2>اختر شخصيتك وانطلق!</h2>
+
+    <button class="adventure-button" onclick="nextStep('1ب')">⚔️ الفارس - 1ب</button>
+    <button class="adventure-button" onclick="nextStep('2ب')">🔮 الساحر - 2ب</button>
+    <button class="adventure-button" onclick="nextStep('3ب')">🛸 المستكشف - 3ب</button>
+    <button class="adventure-button" onclick="nextStep('4ب')">🏹 القناص - 4ب</button>
+    <button class="adventure-button" onclick="nextStep('5ب')">🚀 الطيار - 5ب</button>
+    <button class="adventure-button" onclick="nextStep('6ب')">🤖 الروبوت - 6ب</button>
+  </div>
+
+  <!-- الصفحة الثانية: إدخال الاسم وعرض الدرجة -->
+  <div id="gradesPage">
+    <h1>🔍 ابحث عن درجتك! 🌟</h1>
+    <input type="text" id="studentName" placeholder="اكتب اسمك هنا">
+    <div id="suggestions"></div>
+    <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
+    <input type="text" id="gradeResult" placeholder="✨ درجتك ستظهر هنا!" readonly>
+  </div>
 
   <script>
-    let params = new URLSearchParams(window.location.search);
-    let selectedClass = params.get("class");
+    let selectedClass = "";
+
+    function nextStep(className) {
+      selectedClass = className;
+      document.getElementById("selectionPage").style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("selectionPage").style.display = "none";
+        document.getElementById("gradesPage").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("gradesPage").style.opacity = "1";
+        }, 100);
+      }, 1000);
+    }
 
     document.getElementById("studentName").addEventListener("input", function() {
       let input = this.value.toLowerCase();
@@ -126,7 +113,7 @@
 
     function fetchGrade() {
       let studentName = document.getElementById("studentName").value;
-      let cloudflareProxyUrl = "https://your-cloudflare-worker-url/";
+      let cloudflareProxyUrl = "https://billowing-feather-9cee.johnmamdouh777.workers.dev/";
       let requestUrl = cloudflareProxyUrl + "?class=" + encodeURIComponent(selectedClass) + "&name=" + encodeURIComponent(studentName);
 
       fetch(requestUrl)

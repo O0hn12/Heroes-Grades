@@ -180,16 +180,25 @@
   });
 
   function nextStep(className) {
-    selectedClass = className;
-    document.getElementById("selectionPage").style.opacity = "0";
+  selectedClass = className;
+
+  // تحميل الأسماء مرة واحدة عند اختيار الفرقة
+  fetch(`https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`)
+    .then(res => res.json())
+    .then(data => {
+      allNames = data;
+    });
+
+  // إظهار صفحة الدرجات
+  document.getElementById("selectionPage").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("selectionPage").style.display = "none";
+    document.getElementById("gradesPage").style.display = "flex";
     setTimeout(() => {
-      document.getElementById("selectionPage").style.display = "none";
-      document.getElementById("gradesPage").style.display = "flex";
-      setTimeout(() => {
-        document.getElementById("gradesPage").style.opacity = "1";
-      }, 100);
-    }, 500);
-  }
+      document.getElementById("gradesPage").style.opacity = "1";
+    }, 100);
+  }, 500);
+}
 
   function playBackgroundMusic() {
     let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
@@ -205,28 +214,13 @@
   const suggestionsDiv = document.getElementById("suggestions");
 
   studentInput.addEventListener("input", function () {
-    const input = this.value.toLowerCase();
-
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(() => {
-      if (input.length === 0) {
-        suggestionsDiv.innerHTML = "";
-        return;
-      }
-
-      const url = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`;
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          allNames = data;
-showSuggestions(studentInput, suggestionsDiv);
-        })
-        .catch(() => {
-          suggestionsDiv.innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
-        });
-    }, 150); // التأخير 150ms (ممكن تقلله لو عايز أسرع أكتر)
-  });
+  const input = this.value.toLowerCase().trim();
+  if (input === "") {
+    suggestionsDiv.innerHTML = "";
+    return;
+  }
+  showSuggestions(this, suggestionsDiv);
+});
 
   // ✅ عرض الاقتراحات
 // ✅ عرض الاقتراحات (تلقائي وسريع)

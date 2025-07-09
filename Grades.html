@@ -225,18 +225,64 @@
     }, 150); // التأخير 150ms (ممكن تقلله لو عايز أسرع أكتر)
   });
 
-  function showSuggestions(names) {
-    suggestionsDiv.innerHTML = "";
-    names.forEach(name => {
-      const div = document.createElement("div");
-      div.textContent = name;
-      div.onclick = () => {
-        studentInput.value = name;
-        suggestionsDiv.innerHTML = ""; // يخفي الاقتراحات فورًا
-      };
-      suggestionsDiv.appendChild(div);
-    });
+  // ✅ عرض الاقتراحات
+function showSuggestions(inputElement, suggestionsContainer) {
+  if (!suggestionsContainer || !inputElement) return;
+
+  const value = inputElement.value.toLowerCase().trim();
+  suggestionsContainer.innerHTML = "";
+
+  if (!value || suggestionSelected) {
+    suggestionSelected = false; // ✅ نرجّعه False بعد أول إدخال تاني
+    return;
   }
+
+  if (!allNames || allNames.length === 0) return;
+
+  const filtered = allNames.filter(name =>
+    name && name.toLowerCase().includes(value)
+  ).slice(0, 10);
+
+  if (filtered.length === 0) {
+    suggestionsContainer.innerHTML = "<div class='suggestion-item'>لا توجد نتائج</div>";
+    return;
+  }
+
+  filtered.forEach(name => {
+    const item = document.createElement("div");
+    item.className = "suggestion-item";
+    item.textContent = name;
+    item.onclick = () => {
+      inputElement.value = name;
+      suggestionSelected = true; // ✅ المستخدم اختار اسم
+      suggestionsContainer.innerHTML = "";
+      checkSubmitState && checkSubmitState(); // تأكد أن الزر يتفعل
+    };
+    suggestionsContainer.appendChild(item);
+  });
+}
+
+// ✅ input name (مع تأخير بسيط)
+document.getElementById("nameInput").addEventListener("input", function () {
+  clearTimeout(suggestionTimeout);
+  const self = this;
+  suggestionTimeout = setTimeout(() => {
+    if (allNames.length === 0) {
+      loadNames(); // إعادة تحميل لو مفيش أسماء
+    }
+    showSuggestions(self, document.getElementById("nameSuggestions"));
+    checkSubmitState();
+  }, 200); // تقليل التأخير لسرعة العرض
+});
+
+// ✅ input search
+document.getElementById("searchInput").addEventListener("input", function () {
+  clearTimeout(suggestionTimeout);
+  const self = this;
+  suggestionTimeout = setTimeout(() => {
+    showSuggestions(self, document.getElementById("searchSuggestions"));
+  }, 200);
+});
 
   function fetchGrade() {
     const name = studentInput.value;

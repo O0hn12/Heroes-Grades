@@ -160,101 +160,113 @@
   </div>
 
   <script>
-    document.addEventListener("click", function () {
-      playBackgroundMusic();
-    }, { once: true });
+  let selectedClass = "";
+  let debounceTimeout = null;
 
-    let selectedClass = "";
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("startButton").addEventListener("click", () => {
-        document.getElementById("introPage").style.opacity = "0";
-        setTimeout(() => {
-          document.getElementById("introPage").style.display = "none";
-          document.getElementById("selectionPage").style.display = "flex";
-          setTimeout(() => {
-            document.getElementById("selectionPage").style.opacity = "1";
-          }, 100);
-        }, 500);
-      });
-    });
-
-    function nextStep(className) {
-      selectedClass = className;
-      document.getElementById("selectionPage").style.opacity = "0";
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("startButton").addEventListener("click", () => {
+      document.getElementById("introPage").style.opacity = "0";
       setTimeout(() => {
-        document.getElementById("selectionPage").style.display = "none";
-        document.getElementById("gradesPage").style.display = "flex";
-        setTimeout(() => {
-          document.getElementById("gradesPage").style.opacity = "1";
-        }, 100);
-      }, 500);
-    }
-
-    function playBackgroundMusic() {
-      let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
-      audio.loop = true;
-      audio.play().catch(error => console.log("Autoplay blocked:", error));
-    }
-
-    document.getElementById("studentName").addEventListener("input", function () {
-      let input = this.value.toLowerCase();
-      let url = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`;
-
-      fetch(url)
-        .then(res => res.json())
-        .then(data => {
-          let filtered = data.filter(n => n.toLowerCase().includes(input));
-          showSuggestions(filtered);
-        })
-        .catch(() => {
-          document.getElementById("suggestions").innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
-        });
-    });
-
-    function showSuggestions(names) {
-      let suggestions = document.getElementById("suggestions");
-      suggestions.innerHTML = "";
-      names.forEach(name => {
-        let div = document.createElement("div");
-        div.textContent = name;
-        div.onclick = () => {
-          document.getElementById("studentName").value = name;
-          suggestions.innerHTML = "";
-        };
-        suggestions.appendChild(div);
-      });
-    }
-
-    function fetchGrade() {
-      let name = document.getElementById("studentName").value;
-      let url = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&name=${encodeURIComponent(name)}&column=W`;
-
-      fetch(url)
-        .then(res => res.text())
-        .then(data => {
-          if (data.trim() === "" || isNaN(data)) {
-            document.getElementById("gradeResult").value = "❌ لا توجد بيانات لهذا الاسم!";
-          } else {
-            document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
-          }
-        })
-        .catch(() => {
-          document.getElementById("gradeResult").value = "⚠️ حدث خطأ أثناء جلب البيانات";
-        });
-    }
-
-    function goBack() {
-      document.getElementById("gradesPage").style.opacity = "0";
-      setTimeout(() => {
-        document.getElementById("gradesPage").style.display = "none";
+        document.getElementById("introPage").style.display = "none";
         document.getElementById("selectionPage").style.display = "flex";
         setTimeout(() => {
           document.getElementById("selectionPage").style.opacity = "1";
         }, 100);
       }, 500);
-    }
-  </script>
+    });
+  });
 
+  function nextStep(className) {
+    selectedClass = className;
+    document.getElementById("selectionPage").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("selectionPage").style.display = "none";
+      document.getElementById("gradesPage").style.display = "flex";
+      setTimeout(() => {
+        document.getElementById("gradesPage").style.opacity = "1";
+      }, 100);
+    }, 500);
+  }
+
+  function playBackgroundMusic() {
+    let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
+    audio.loop = true;
+    audio.play().catch(error => console.log("Autoplay blocked:", error));
+  }
+
+  document.addEventListener("click", function () {
+    playBackgroundMusic();
+  }, { once: true });
+
+  const studentInput = document.getElementById("studentName");
+  const suggestionsDiv = document.getElementById("suggestions");
+
+  studentInput.addEventListener("input", function () {
+    const input = this.value.toLowerCase();
+
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+      if (input.length === 0) {
+        suggestionsDiv.innerHTML = "";
+        return;
+      }
+
+      const url = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&names=true`;
+
+      fetch(url)
+        .then(res => res.json())
+        .then(data => {
+          const filtered = data.filter(n => n.toLowerCase().includes(input));
+          showSuggestions(filtered);
+        })
+        .catch(() => {
+          suggestionsDiv.innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
+        });
+    }, 150); // التأخير 150ms (ممكن تقلله لو عايز أسرع أكتر)
+  });
+
+  function showSuggestions(names) {
+    suggestionsDiv.innerHTML = "";
+    names.forEach(name => {
+      const div = document.createElement("div");
+      div.textContent = name;
+      div.onclick = () => {
+        studentInput.value = name;
+        suggestionsDiv.innerHTML = ""; // يخفي الاقتراحات فورًا
+      };
+      suggestionsDiv.appendChild(div);
+    });
+  }
+
+  function fetchGrade() {
+    const name = studentInput.value;
+    const url = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&name=${encodeURIComponent(name)}&column=W`;
+
+    fetch(url)
+      .then(res => res.text())
+      .then(data => {
+        if (data.trim() === "" || isNaN(data)) {
+          document.getElementById("gradeResult").value = "❌ لا توجد بيانات لهذا الاسم!";
+        } else {
+          document.getElementById("gradeResult").value = "🌟 درجتك: " + data;
+        }
+      })
+      .catch(() => {
+        document.getElementById("gradeResult").value = "⚠️ حدث خطأ أثناء جلب البيانات";
+      });
+  }
+
+  function goBack() {
+    document.getElementById("gradesPage").style.opacity = "0";
+    setTimeout(() => {
+      document.getElementById("gradesPage").style.display = "none";
+      document.getElementById("selectionPage").style.display = "flex";
+      setTimeout(() => {
+        document.getElementById("selectionPage").style.opacity = "1";
+      }, 100);
+    }, 500);
+  }
+</script>
+  
 </body>
 </html>

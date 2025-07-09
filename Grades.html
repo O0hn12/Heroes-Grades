@@ -162,6 +162,9 @@
   <script>
   let allNames = [];
   let suggestionTimeout = null;
+  let debounceTimeout = null;
+  let selectedClass = "";
+
 
     document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("startButton").addEventListener("click", () => {
@@ -216,8 +219,8 @@
       fetch(url)
         .then(res => res.json())
         .then(data => {
-          const filtered = data.filter(n => n.toLowerCase().includes(input));
-          showSuggestions(filtered);
+          allNames = data;
+showSuggestions(studentInput, suggestionsDiv);
         })
         .catch(() => {
           suggestionsDiv.innerHTML = "<p>⚠️ خطأ في تحميل البيانات</p>";
@@ -251,29 +254,10 @@
       item.onclick = () => {
         inputElement.value = name;
         suggestionsContainer.innerHTML = "";
-        checkSubmitState && checkSubmitState(); // لو الزر محتاج يتفعل بعد الاختيار
       };
       suggestionsContainer.appendChild(item);
     });
   }
-
-  // ✅ الاسم - إدخال تلقائي
-  document.getElementById("nameInput").addEventListener("input", function () {
-    clearTimeout(suggestionTimeout);
-    const self = this;
-    suggestionTimeout = setTimeout(() => {
-      showSuggestions(self, document.getElementById("nameSuggestions"));
-    }, 150); // تقليل التأخير لسرعة أفضل
-  });
-
-  // ✅ البحث - إدخال تلقائي
-  document.getElementById("searchInput").addEventListener("input", function () {
-    clearTimeout(suggestionTimeout);
-    const self = this;
-    suggestionTimeout = setTimeout(() => {
-      showSuggestions(self, document.getElementById("searchSuggestions"));
-    }, 150);
-  });
     
   function fetchGrade() {
     const name = studentInput.value;

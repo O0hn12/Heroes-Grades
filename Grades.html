@@ -163,6 +163,19 @@
   let allNames = [];
   let suggestionTimeout = null;
 
+    document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("startButton").addEventListener("click", () => {
+      document.getElementById("introPage").style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("introPage").style.display = "none";
+        document.getElementById("selectionPage").style.display = "flex";
+        setTimeout(() => {
+          document.getElementById("selectionPage").style.opacity = "1";
+        }, 100);
+      }, 500);
+    });
+  });
+
   function nextStep(className) {
     selectedClass = className;
     document.getElementById("selectionPage").style.opacity = "0";

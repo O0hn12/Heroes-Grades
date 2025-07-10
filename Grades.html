@@ -120,6 +120,21 @@
         padding: 10px;
       }
     }
+    
+  #suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
 
     @media (max-width: 600px) {
       #button-container {
@@ -152,8 +167,10 @@
 
   <div id="gradesPage">
     <h1 id="title-box">🔍 ابحث عن درجتك 🌟</h1>
-    <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
-    <div id="suggestions"></div>
+    <div style="position: relative; width: 80%; margin: auto;">
+  <input type="text" id="studentName" placeholder="✏️ اكتب اسمك هنا">
+  <div id="suggestions"></div>
+</div>
     <button class="adventure-button" onclick="fetchGrade()">🎯 عرض الدرجة</button>
     <input type="text" id="gradeResult" placeholder="💡 درجتك ستظهر هنا" readonly>
     <button class="adventure-button" onclick="goBack()">🔙 رجوع</button>

@@ -261,9 +261,10 @@
     filtered.forEach(name => {
       const item = document.createElement("div");
       item.className = "suggestion-item";
-      item.textContent = name;
+      item.innerText = name;
+      item.dataset.realname = name;
       item.onclick = () => {
-        inputElement.value = name;
+        inputElement.value = item.dataset.realname.trim();
         suggestionsContainer.innerHTML = "";
       };
       suggestionsContainer.appendChild(item);

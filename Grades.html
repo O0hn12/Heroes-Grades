@@ -181,6 +181,7 @@
   let suggestionTimeout = null;
   let debounceTimeout = null;
   let selectedClass = "";
+  let selectedExactName = "";
 
 
     document.addEventListener("DOMContentLoaded", function () {
@@ -264,7 +265,8 @@
       item.innerText = name;
       item.dataset.realname = name;
       item.onclick = () => {
-        inputElement.value = item.dataset.realname.trim();
+        inputElement.value = item.dataset.realname;
+selectedExactName = item.dataset.realname;
         suggestionsContainer.innerHTML = "";
       };
       suggestionsContainer.appendChild(item);
@@ -272,7 +274,7 @@
   }
     
   function fetchGrade() {
-    const name = studentInput.value;
+    const name = selectedExactName || studentInput.value.trim();
     const url = `https://billowing-feather-9cee.johnmamdouh777.workers.dev/?class=${encodeURIComponent(selectedClass)}&name=${encodeURIComponent(name)}&column=W`;
 
     fetch(url)

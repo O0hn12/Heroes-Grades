@@ -219,15 +219,17 @@
 }
 
   function playBackgroundMusic() {
-    let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
-    audio.loop = true;
-    audio.play().catch(error => console.log("Autoplay blocked:", error));
-  }
+  let audio = new Audio("https://raw.githubusercontent.com/O0hn12/adventure-sound/main/water-adventure-22474.mp3");
+  audio.loop = true;
+  audio.play().catch(error => console.log("Autoplay blocked:", error));
+}
 
+document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("startButton").addEventListener("click", () => {
-  playBackgroundMusic(); // ✅ شغل هنا بدل ما تشغل عند أول click في أي مكان
-  ...
+    playBackgroundMusic(); // ✅ يشغّل مرة واحدة فقط
+  }, { once: true });
 });
+
 
   const studentInput = document.getElementById("studentName");
   const suggestionsDiv = document.getElementById("suggestions");

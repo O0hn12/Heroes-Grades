@@ -308,6 +308,15 @@ selectedExactName = item.dataset.realname;
     }, 100);
   }, 500);
 }
+
+    // مسح الاسم والنتيجة عند الرجوع للصفحة (بسبب bfcache في الموبايل)
+window.addEventListener("pageshow", () => {
+  document.getElementById("studentName").value = "";
+  document.getElementById("gradeResult").value = "";
+  suggestionsDiv.innerHTML = "";
+  selectedExactName = "";
+});
+
 </script>
   
 </body>

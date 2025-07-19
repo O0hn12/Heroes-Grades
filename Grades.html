@@ -224,9 +224,10 @@
     audio.play().catch(error => console.log("Autoplay blocked:", error));
   }
 
-  document.addEventListener("click", function () {
-    playBackgroundMusic();
-  }, { once: true });
+  document.getElementById("startButton").addEventListener("click", () => {
+  playBackgroundMusic(); // ✅ شغل هنا بدل ما تشغل عند أول click في أي مكان
+  ...
+});
 
   const studentInput = document.getElementById("studentName");
   const suggestionsDiv = document.getElementById("suggestions");
@@ -292,15 +293,19 @@ selectedExactName = item.dataset.realname;
   }
 
   function goBack() {
-    document.getElementById("gradesPage").style.opacity = "0";
+  document.getElementById("gradesPage").style.opacity = "0";
+  setTimeout(() => {
+    document.getElementById("gradesPage").style.display = "none";
+    document.getElementById("selectionPage").style.display = "flex";
+    document.getElementById("studentName").value = "";
+    document.getElementById("gradeResult").value = "";
+    selectedExactName = "";
+    suggestionsDiv.innerHTML = "";
     setTimeout(() => {
-      document.getElementById("gradesPage").style.display = "none";
-      document.getElementById("selectionPage").style.display = "flex";
-      setTimeout(() => {
-        document.getElementById("selectionPage").style.opacity = "1";
-      }, 100);
-    }, 500);
-  }
+      document.getElementById("selectionPage").style.opacity = "1";
+    }, 100);
+  }, 500);
+}
 </script>
   
 </body>
